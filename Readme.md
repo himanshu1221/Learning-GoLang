@@ -16,18 +16,18 @@ Once you have installed Golang, you can clone this repository to your local mach
 The repository contains several folders, each of which covers a specific topic in Golang. The folder structure is as follows:
 
 
+.
 ├── 17defer
-│ ├── main.go
-│ └── go.modd
+│   ├── main.go
+│   └── go.mod
 ├── 15functions
-│ ├── main.go
-│ └── go.mod
+│   ├── main.go
+│   └── go.mod
 ├── 16methods
-│ ├── main.go
-│ └── go.mod
+│   ├── main.go
+│   └── go.mod
 └── README.md
-
-- and so on 
+   
 
 
 Each folder contains a `main.go` file, which contains the code related to the topic. There is also a `go.mod` file in each folder.
