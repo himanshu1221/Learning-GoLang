@@ -19,12 +19,17 @@ The repository contains several folders, each of which covers a specific topic i
 ├── 01hello
 │   ├── main.go
 │   └── go.mod
+│
+│
 ├── 02variable
 │   ├── main.go
 │   └── go.mod
+│
+│
 ├── 03userinput
 │   ├── main.go
 │   └── go.mod
+│
 │   
 ├── and so on
 │   
