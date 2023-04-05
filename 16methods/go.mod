@@ -1,3 +1,3 @@
-module main.go
+module methods
 
 go 1.20

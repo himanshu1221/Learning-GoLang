@@ -1,3 +1,3 @@
-module main.go
+module webrequests
 
 go 1.20
