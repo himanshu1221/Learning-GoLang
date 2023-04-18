@@ -4,13 +4,15 @@ import (
 	"fmt"
 	"io/ioutil"
 	"net/http"
+	"net/url"
 	"strings"
 )
 
 func main() {
 	fmt.Println("Making request in APIs")
 	// PerformGetRequest()
-	PerformPostReuest()
+	// PerformPostJsonReuest()
+	PerformPostFormReuest()
 }
 
 // func PerformGetRequest() {
@@ -41,7 +43,7 @@ func main() {
 // 	// fmt.Println(string(content))
 // }
 
-func PerformPostReuest() {
+func PerformPostJsonReuest() {
 	const Url = "http://localhost:8000/post"
 
 	// fake json payload
@@ -66,4 +68,27 @@ func PerformPostReuest() {
 
 	fmt.Println(string(Content))
 
+}
+
+func PerformPostFormReuest() {
+	const Url = "http://localhost:8000/postform"
+
+	//formdata
+
+	data := url.Values{}
+	data.Add("firstname", "himanshu")
+	data.Add("lastname", "chhatwal")
+	data.Add("email", "himanshu@go.dev")
+
+	response, err := http.PostForm(Url, data)
+
+	if err != nil {
+		panic(err)
+	}
+
+	defer response.Body.Close()
+
+	content, _ := ioutil.ReadAll(response.Body)
+
+	fmt.Println(string(content))
 }
