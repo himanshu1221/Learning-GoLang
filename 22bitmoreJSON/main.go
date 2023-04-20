@@ -15,7 +15,8 @@ type course struct {
 
 func main() {
 	fmt.Println("Learning about JSON")
-	EncodeJSON()
+	// EncodeJSON()
+	DecodeJSON()
 }
 
 func EncodeJSON() {
@@ -33,4 +34,36 @@ func EncodeJSON() {
 
 	fmt.Printf("%s\n", finalJSON)
 
+}
+
+func DecodeJSON() {
+	jsonDataFromWeb := []byte(`
+	{
+		"coursename": "MERN",
+		"Price": 299,
+		"Platform": "Youtube.com",
+		"tags": ["full-stack","JS"]
+	}
+	
+	`)
+
+	var MERNCourse course
+
+	checkValid := json.Valid(jsonDataFromWeb)
+
+	if checkValid {
+		fmt.Println("JSON was valid")
+		json.Unmarshal(jsonDataFromWeb, &MERNCourse)
+		fmt.Printf("%#v\n", MERNCourse)
+	} else {
+		fmt.Println("JSON was not valid")
+	}
+
+	var myOnlineData map[string]interface{}
+	json.Unmarshal(jsonDataFromWeb, &myOnlineData)
+	fmt.Printf("%#v\n", myOnlineData)
+
+	for k, v := range myOnlineData {
+		fmt.Printf("key is %v and value is %v and the type is %T\n", k, v, v)
+	}
 }
