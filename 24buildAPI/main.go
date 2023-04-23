@@ -1,6 +1,7 @@
 package main
 
 import (
+	"encoding/json"
 	"fmt"
 	"net/http"
 )
@@ -44,4 +45,5 @@ func serveHome(w http.ResponseWriter, r *http.Request) {
 func getAllCourses(w http.ResponseWriter, r *http.Request) {
 	fmt.Println("Get All Courses")
 	w.Header().Set("Contnet-Type", "application/json")
+	json.NewEncoder(w).Encode(courses)
 }
