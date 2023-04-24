@@ -1,4 +1,4 @@
-module github.com/himanshu1221/Learning-GoLang
+module github.com/himanshu1221/Learning-GoLang/BuildingAPI
 
 go 1.20
 
