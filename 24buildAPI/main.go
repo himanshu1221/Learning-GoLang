@@ -3,6 +3,7 @@ package main
 import (
 	"encoding/json"
 	"fmt"
+	"log"
 	"math/rand"
 	"net/http"
 	"strconv"
@@ -36,6 +37,28 @@ func (c *Course) isEmpty() bool {
 }
 
 func main() {
+	fmt.Println("API-Build my first api using GoLang")
+	r := mux.NewRouter()
+
+	//seeding
+
+	courses = append(courses, Course{CourseId: "1", CourseName: "ViteJS", CoursePrice: 0, Author: &Author{Fullname: "himanshu chhatwal", Website: "himashu.go.dev"}})
+	courses = append(courses, Course{CourseId: "2", CourseName: "JavaScrpt", CoursePrice: 0, Author: &Author{Fullname: "himanshu chhatwal", Website: "himashu.go.dev"}})
+	courses = append(courses, Course{CourseId: "3", CourseName: "NodeJS", CoursePrice: 0, Author: &Author{Fullname: "himanshu chhatwal", Website: "himashu.go.dev"}})
+
+	//Routing
+
+	r.HandleFunc("/", serveHome).Methods("GET")
+	r.HandleFunc("/courses", getAllCourses).Methods("GET")
+	r.HandleFunc("/courses/{id}", getOneCourse).Methods("GET")
+	r.HandleFunc("/courses", createOneCourse).Methods("POST")
+	r.HandleFunc("/courses", createOneCourse).Methods("POST")
+	r.HandleFunc("/courses/{id}", updateOneCourse).Methods("PUT")
+	r.HandleFunc("/courses/{id}", deleteOneCourse).Methods("DELETE")
+
+	//listen to a port
+
+	log.Fatal(http.ListenAndServe(":3000", r))
 
 }
 
