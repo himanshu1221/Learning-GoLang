@@ -6,6 +6,8 @@ import (
 	"log"
 
 	"github.com/himanshu1221/Learning-GoLang/25mongoapi/model"
+	"go.mongodb.org/mongo-driver/bson"
+	"go.mongodb.org/mongo-driver/bson/primitive"
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
 )
@@ -46,4 +48,10 @@ func insertOneMovie(movie model.Netflix) {
 		log.Fatal(err)
 	}
 	fmt.Println("Inserted 1 Movie in DB with ide :", inserted.InsertedID)
+}
+
+func updateOneMovie(movieId string) {
+	id, _ := primitive.ObjectIDFromHex(movieId)
+	filter := bson.M{"_id": id}
+	update := bson.M{"$set": bson.M{"watched": true}}
 }
