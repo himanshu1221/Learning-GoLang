@@ -54,4 +54,29 @@ func updateOneMovie(movieId string) {
 	id, _ := primitive.ObjectIDFromHex(movieId)
 	filter := bson.M{"_id": id}
 	update := bson.M{"$set": bson.M{"watched": true}}
+
+	result, err := collection.UpdateOne(context.Background(), filter, update)
+	if err != nil {
+		log.Fatal(err)
+	}
+	fmt.Println("Updated 1 Movie in DB with ide :", result.ModifiedCount)
+}
+
+func deleteOneMovie(movieId string) {
+	id, _ := primitive.ObjectIDFromHex(movieId)
+	filter := bson.M{"_id": id}
+	deleteCount, err := collection.DeleteOne(context.Background(), filter)
+	if err != nil {
+		log.Fatal(err)
+	}
+	fmt.Println("deleted 1 Movie in DB with ide :", deleteCount)
+}
+
+func deleteAllMovie() {
+	deleteResult, err := collection.DeleteMany(context.Background(), bson.D{{}}, nil)
+	if err != nil {
+		log.Fatal(err)
+	}
+	fmt.Println("number of deleted Movies in DB with ide :", deleteResult)
+
 }
