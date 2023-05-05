@@ -118,3 +118,7 @@ func CreateMovie(w http.ResponseWriter, r *http.Request) {
 	insertOneMovie(movie)
 	json.NewEncoder(w).Encode(movie)
 }
+
+func MarkedAsWatch() {
+
+}
