@@ -108,3 +108,13 @@ func GetMyAllMovies(w http.ResponseWriter, r *http.Request) {
 	json.NewEncoder(w).Encode(allMovie)
 
 }
+
+func CreateMovie(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-Type", "application/x-www-form-urlencoded")
+	w.Header().Set("Allow-Control-Allow-Methods", "POST")
+
+	var movie model.Netflix
+	_ = json.NewDecoder(r.Body).Decode(&movie)
+	insertOneMovie(movie)
+	json.NewEncoder(w).Encode(movie)
+}
